@@ -1,0 +1,25 @@
+{
+  "name": "@notweb/i2c",
+  "version": "0.0.1",
+  "description": "I2C access with Node.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kou029w/notweb-i2c.git"
+  },
+  "author": "Kohei Watanabe <kou029w@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "i2c-bus": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.12",
+    "typescript": "^3.6.4"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
