@@ -27,6 +27,7 @@ export interface I2CSlaveDevice {
     write16(registerNumber: number, value: number): Promise<number>;
 }
 export declare class OperationError extends Error {
+    constructor(message: string);
 }
 export declare function requestI2CAccess(): Promise<I2CAccess>;
 export {};
