@@ -76,7 +76,12 @@ export interface I2CSlaveDevice {
   write16(registerNumber: number, value: number): Promise<number>;
 }
 
-export class OperationError extends Error {}
+export class OperationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = this.constructor.name;
+  }
+}
 
 export async function requestI2CAccess(): Promise<I2CAccess> {
   const ports = new I2CPortMap(
