@@ -1,11 +1,11 @@
 {
-  "name": "@notweb/i2c",
+  "name": "node-web-i2c",
   "version": "0.0.1",
   "description": "I2C access with Node.js",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kou029w/notweb-i2c.git"
+    "url": "https://github.com/kou029w/node-web-i2c.git"
   },
   "author": "Kohei Watanabe <kou029w@gmail.com>",
   "license": "MIT",
@@ -16,10 +16,25 @@
     "i2c-bus": "^5.1.0"
   },
   "devDependencies": {
-    "@types/node": "^12.7.12",
+    "@types/node": "^12.11.1",
     "typescript": "^3.6.4"
   },
   "scripts": {
     "build": "tsc"
-  }
+  },
+  "keywords": [
+    "hardware",
+    "i2c",
+    "iot",
+    "linux",
+    "pi",
+    "raspberry",
+    "raspberry pi",
+    "raspi",
+    "robot",
+    "robotics",
+    "robots",
+    "rpi",
+    "smbus"
+  ]
 }

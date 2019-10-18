@@ -1,11 +1,11 @@
-# @notweb/i2c
+# node-web-i2c
 
 I2C access with Node.js
 
 ## Usage
 
 ```js
-const { requestI2CAccess } = require("@notweb/i2c");
+const { requestI2CAccess } = require("node-web-i2c");
 
 const ADT7410_ADDR = 0x48;
 
