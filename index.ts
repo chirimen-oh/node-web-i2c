@@ -59,10 +59,22 @@ export class I2CPort {
 
     return {
       slaveAddress,
-      read8: cmd => bus.readByte(slaveAddress, cmd),
-      read16: cmd => bus.readWord(slaveAddress, cmd),
-      write8: (cmd, byte) => bus.writeByte(slaveAddress, cmd, byte),
-      write16: (cmd, word) => bus.writeWord(slaveAddress, cmd, word)
+      read8: cmd =>
+        bus.readByte(slaveAddress, cmd).catch(error => {
+          throw new OperationError(error);
+        }),
+      read16: cmd =>
+        bus.readWord(slaveAddress, cmd).catch(error => {
+          throw new OperationError(error);
+        }),
+      write8: (cmd, byte) =>
+        bus.writeByte(slaveAddress, cmd, byte).catch(error => {
+          throw new OperationError(error);
+        }),
+      write16: (cmd, word) =>
+        bus.writeWord(slaveAddress, cmd, word).catch(error => {
+          throw new OperationError(error);
+        })
     };
   }
 }
