@@ -11,7 +11,7 @@ const ADT7410_ADDR = 0x48;
 
 async function main() {
   const i2cAccess = await requestI2CAccess();
-  const port = gpioAccess.ports.get(1);
+  const port = i2cAccess.ports.get(1);
   const i2cSlave = await port.open(ADT7410_ADDR);
   const temperature =
     (((await i2cSlave.read8(0x00)) << 8) + (await i2cSlave.read8(0x01))) / 128;
