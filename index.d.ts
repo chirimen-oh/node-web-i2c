@@ -4,7 +4,7 @@ declare type I2CSlaveAddress = number;
 export declare class I2CAccess {
     private readonly _ports;
     constructor(ports?: I2CPortMap);
-    readonly ports: I2CPortMap;
+    get ports(): I2CPortMap;
 }
 /**
  * Different from Web GPIO API specification.
@@ -15,8 +15,8 @@ export declare class I2CPortMap extends Map<PortNumber, I2CPort> {
 export declare class I2CPort {
     private readonly _portNumber;
     constructor(portNumber: PortNumber);
-    readonly portNumber: number;
-    readonly portName: string;
+    get portNumber(): number;
+    get portName(): string;
     open(slaveAddress: I2CSlaveAddress): Promise<I2CSlaveDevice>;
 }
 export interface I2CSlaveDevice {
