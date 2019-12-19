@@ -6,9 +6,7 @@ export declare class I2CAccess {
     constructor(ports?: I2CPortMap);
     get ports(): I2CPortMap;
 }
-/**
- * Different from Web GPIO API specification.
- */
+/** Different from Web I2C API specification. */
 export declare class I2CPortMap extends Map<PortNumber, I2CPort> {
     getByName(portName: PortName): I2CPort | undefined;
 }
@@ -25,6 +23,14 @@ export interface I2CSlaveDevice {
     read16(registerNumber: number): Promise<number>;
     write8(registerNumber: number, value: number): Promise<number>;
     write16(registerNumber: number, value: number): Promise<number>;
+    /** Different from Web I2C API specification. */
+    readByte(): Promise<number>;
+    /** Different from Web I2C API specification. */
+    readBytes(length: number): Promise<Uint8Array>;
+    /** Different from Web I2C API specification. */
+    writeByte(byte: number): Promise<number>;
+    /** Different from Web I2C API specification. */
+    writeBytes(bytes: Array<number>): Promise<Uint8Array>;
 }
 export declare class OperationError extends Error {
     constructor(message: string);

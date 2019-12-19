@@ -1,8 +1,11 @@
 {
   "name": "node-web-i2c",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "I2C access with Node.js",
   "main": "index.js",
+  "files": [
+    "index.*"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kou029w/node-web-i2c.git"
@@ -13,10 +16,10 @@
     "access": "public"
   },
   "dependencies": {
-    "i2c-bus": "^5.1.0"
+    "i2c-bus": "~5"
   },
   "devDependencies": {
-    "@types/node": "^12.11.1",
+    "@types/node": "~12",
     "typescript": "~3.7"
   },
   "scripts": {

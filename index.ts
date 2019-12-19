@@ -27,9 +27,7 @@ export class I2CAccess {
   }
 }
 
-/**
- * Different from Web GPIO API specification.
- */
+/** Different from Web I2C API specification. */
 export class I2CPortMap extends Map<PortNumber, I2CPort> {
   getByName(portName: PortName) {
     const matches = /^i2c-(\d+)$/.exec(portName);
@@ -74,7 +72,52 @@ export class I2CPort {
       write16: (cmd, word) =>
         bus.writeWord(slaveAddress, cmd, word).catch(error => {
           throw new OperationError(error);
-        })
+        }),
+
+      /** Different from Web I2C API specification. */
+      readByte: async () => {
+        try {
+          const byte = await bus.receiveByte(slaveAddress);
+          return byte;
+        } catch (error) {
+          throw new OperationError(error);
+        }
+      },
+      /** Different from Web I2C API specification. */
+      readBytes: async length => {
+        try {
+          const { bytesRead, buffer } = await bus.i2cRead(
+            slaveAddress,
+            length,
+            Buffer.allocUnsafe(length)
+          );
+          return new Uint8Array(buffer.slice(0, bytesRead));
+        } catch (error) {
+          throw new OperationError(error);
+        }
+      },
+      /** Different from Web I2C API specification. */
+      writeByte: async byte => {
+        try {
+          await bus.sendByte(slaveAddress, byte);
+          return byte;
+        } catch (error) {
+          throw new OperationError(error);
+        }
+      },
+      /** Different from Web I2C API specification. */
+      writeBytes: async bytes => {
+        try {
+          const { bytesWritten, buffer } = await bus.i2cWrite(
+            slaveAddress,
+            length,
+            Buffer.from(bytes)
+          );
+          return new Uint8Array(buffer.slice(0, bytesWritten));
+        } catch (error) {
+          throw new OperationError(error);
+        }
+      }
     };
   }
 }
@@ -86,6 +129,15 @@ export interface I2CSlaveDevice {
   read16(registerNumber: number): Promise<number>;
   write8(registerNumber: number, value: number): Promise<number>;
   write16(registerNumber: number, value: number): Promise<number>;
+
+  /** Different from Web I2C API specification. */
+  readByte(): Promise<number>;
+  /** Different from Web I2C API specification. */
+  readBytes(length: number): Promise<Uint8Array>;
+  /** Different from Web I2C API specification. */
+  writeByte(byte: number): Promise<number>;
+  /** Different from Web I2C API specification. */
+  writeBytes(bytes: Array<number>): Promise<Uint8Array>;
 }
 
 export class OperationError extends Error {
