@@ -110,7 +110,7 @@ export class I2CPort {
         try {
           const { bytesWritten, buffer } = await bus.i2cWrite(
             slaveAddress,
-            length,
+            bytes.length,
             Buffer.from(bytes)
           );
           return new Uint8Array(buffer.slice(0, bytesWritten));

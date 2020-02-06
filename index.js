@@ -88,7 +88,7 @@ class I2CPort {
             /** Different from Web I2C API specification. */
             writeBytes: async (bytes) => {
                 try {
-                    const { bytesWritten, buffer } = await bus.i2cWrite(slaveAddress, length, Buffer.from(bytes));
+                    const { bytesWritten, buffer } = await bus.i2cWrite(slaveAddress, bytes.length, Buffer.from(bytes));
                     return new Uint8Array(buffer.slice(0, bytesWritten));
                 }
                 catch (error) {
