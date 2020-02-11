@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@types/i2c-bus@~5":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@types/i2c-bus/-/i2c-bus-5.1.0.tgz#241b91d40deb0b2d08ed60862efa655e53e96c30"
+  integrity sha512-zBwBpfaFzKtYaS2j/sh+m/zKRcbXuG26/wWlJq3F9+oWXQ9DSxuJXOU+t1PMorj3DBZzpLO8LqbVTGRE1PUb3g==
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "13.7.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.0.tgz#b417deda18cf8400f278733499ad5547ed1abec4"
+  integrity sha512-GnZbirvmqZUzMgkFn70c74OQpTTUcCzlhQliTzYjQMqg+hVKcDnxdL19Ne3UdYzdMA/+W3eb646FWn/ZaT1NfQ==
+
 "@types/node@~12":
   version "12.12.26"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.26.tgz#213e153babac0ed169d44a6d919501e68f59dea9"
