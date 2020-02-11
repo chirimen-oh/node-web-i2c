@@ -49,12 +49,24 @@ class I2CPort {
             read16: cmd => bus.readWord(slaveAddress, cmd).catch(error => {
                 throw new OperationError(error);
             }),
-            write8: (cmd, byte) => bus.writeByte(slaveAddress, cmd, byte).catch(error => {
-                throw new OperationError(error);
-            }),
-            write16: (cmd, word) => bus.writeWord(slaveAddress, cmd, word).catch(error => {
-                throw new OperationError(error);
-            }),
+            write8: async (cmd, byte) => {
+                try {
+                    await bus.writeByte(slaveAddress, cmd, byte);
+                    return byte;
+                }
+                catch (error) {
+                    throw new OperationError(error);
+                }
+            },
+            write16: async (cmd, word) => {
+                try {
+                    await bus.writeWord(slaveAddress, cmd, word);
+                    return word;
+                }
+                catch (error) {
+                    throw new OperationError(error);
+                }
+            },
             /** Different from Web I2C API specification. */
             readByte: async () => {
                 try {
