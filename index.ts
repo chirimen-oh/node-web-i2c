@@ -51,18 +51,18 @@ export class I2CPort {
   }
 
   async open(slaveAddress: I2CSlaveAddress): Promise<I2CSlaveDevice> {
-    const bus = await openPromisified(this.portNumber).catch(error => {
+    const bus = await openPromisified(this.portNumber).catch((error) => {
       throw new OperationError(error);
     });
 
     return {
       slaveAddress,
-      read8: cmd =>
-        bus.readByte(slaveAddress, cmd).catch(error => {
+      read8: (cmd) =>
+        bus.readByte(slaveAddress, cmd).catch((error) => {
           throw new OperationError(error);
         }),
-      read16: cmd =>
-        bus.readWord(slaveAddress, cmd).catch(error => {
+      read16: (cmd) =>
+        bus.readWord(slaveAddress, cmd).catch((error) => {
           throw new OperationError(error);
         }),
       write8: async (cmd, byte) => {
@@ -92,7 +92,7 @@ export class I2CPort {
         }
       },
       /** Different from Web I2C API specification. */
-      readBytes: async length => {
+      readBytes: async (length) => {
         try {
           const { bytesRead, buffer } = await bus.i2cRead(
             slaveAddress,
@@ -105,7 +105,7 @@ export class I2CPort {
         }
       },
       /** Different from Web I2C API specification. */
-      writeByte: async byte => {
+      writeByte: async (byte) => {
         try {
           await bus.sendByte(slaveAddress, byte);
           return byte;
@@ -114,7 +114,7 @@ export class I2CPort {
         }
       },
       /** Different from Web I2C API specification. */
-      writeBytes: async bytes => {
+      writeBytes: async (bytes) => {
         try {
           const { bytesWritten, buffer } = await bus.i2cWrite(
             slaveAddress,
@@ -125,7 +125,7 @@ export class I2CPort {
         } catch (error) {
           throw new OperationError(error);
         }
-      }
+      },
     };
   }
 }
@@ -157,9 +157,9 @@ export class OperationError extends Error {
 
 export async function requestI2CAccess(): Promise<I2CAccess> {
   const ports = new I2CPortMap(
-    [...Array(I2CPortMapSizeMax).keys()].map(portNumber => [
+    [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
       portNumber,
-      new I2CPort(portNumber)
+      new I2CPort(portNumber),
     ])
   );
 
