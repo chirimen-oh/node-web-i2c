@@ -13,12 +13,12 @@
   "author": "Kohei Watanabe <kou029w@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/i2c-bus": "~5",
-    "@types/node": "~12",
-    "i2c-bus": "~5"
+    "@types/i2c-bus": "^5.1.0",
+    "@types/node": "^14.0.14",
+    "i2c-bus": "^5.2.0"
   },
   "devDependencies": {
-    "typescript": "~3.7"
+    "typescript": "^3.9.5"
   },
   "scripts": {
     "build": "tsc"
