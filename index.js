@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.requestI2CAccess = exports.OperationError = exports.I2CPort = exports.I2CPortMap = exports.I2CAccess = void 0;
 const i2c_bus_1 = require("i2c-bus");
 const I2CPortMapSizeMax = 32;
 const Uint16Max = 65535;
@@ -38,15 +39,15 @@ class I2CPort {
         return `i2c-${this.portNumber}`;
     }
     async open(slaveAddress) {
-        const bus = await i2c_bus_1.openPromisified(this.portNumber).catch(error => {
+        const bus = await i2c_bus_1.openPromisified(this.portNumber).catch((error) => {
             throw new OperationError(error);
         });
         return {
             slaveAddress,
-            read8: cmd => bus.readByte(slaveAddress, cmd).catch(error => {
+            read8: (cmd) => bus.readByte(slaveAddress, cmd).catch((error) => {
                 throw new OperationError(error);
             }),
-            read16: cmd => bus.readWord(slaveAddress, cmd).catch(error => {
+            read16: (cmd) => bus.readWord(slaveAddress, cmd).catch((error) => {
                 throw new OperationError(error);
             }),
             write8: async (cmd, byte) => {
@@ -106,7 +107,7 @@ class I2CPort {
                 catch (error) {
                     throw new OperationError(error);
                 }
-            }
+            },
         };
     }
 }
@@ -119,9 +120,9 @@ class OperationError extends Error {
 }
 exports.OperationError = OperationError;
 async function requestI2CAccess() {
-    const ports = new I2CPortMap([...Array(I2CPortMapSizeMax).keys()].map(portNumber => [
+    const ports = new I2CPortMap([...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
         portNumber,
-        new I2CPort(portNumber)
+        new I2CPort(portNumber),
     ]));
     return new I2CAccess(ports);
 }
