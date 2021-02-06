@@ -21,7 +21,8 @@
     "typescript": "^4.0.0"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "keywords": [
     "hardware",
