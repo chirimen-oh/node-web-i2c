@@ -156,12 +156,13 @@ export class OperationError extends Error {
 }
 
 export async function requestI2CAccess(): Promise<I2CAccess> {
-  const ports = new I2CPortMap(
-    [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
-      portNumber,
-      new I2CPort(portNumber),
-    ])
-  );
-
-  return new I2CAccess(ports);
+  return new Promise(res => {
+    const ports = new I2CPortMap(
+      [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
+        portNumber,
+        new I2CPort(portNumber),
+      ])
+    );  
+    res(new I2CAccess(ports));
+  });
 }
