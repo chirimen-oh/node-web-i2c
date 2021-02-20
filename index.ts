@@ -22,14 +22,14 @@ export class I2CAccess {
     this._ports = ports == null ? new I2CPortMap() : ports;
   }
 
-  get ports() {
+  get ports(): I2CPortMap {
     return this._ports;
   }
 }
 
 /** Different from Web I2C API specification. */
 export class I2CPortMap extends Map<PortNumber, I2CPort> {
-  getByName(portName: PortName) {
+  getByName(portName: PortName): I2CPort | undefined {
     const matches = /^i2c-(\d+)$/.exec(portName);
     return matches == null ? undefined : this.get(parseUint16(matches[1]));
   }
@@ -42,11 +42,11 @@ export class I2CPort {
     this._portNumber = parseUint16(portNumber.toString());
   }
 
-  get portNumber() {
+  get portNumber(): PortNumber {
     return this._portNumber;
   }
 
-  get portName() {
+  get portName(): string {
     return `i2c-${this.portNumber}`;
   }
 
