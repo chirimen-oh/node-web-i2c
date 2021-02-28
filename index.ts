@@ -155,14 +155,15 @@ export class OperationError extends Error {
   }
 }
 
+// Web I2Cの仕様に基づく意図的なasync関数の使用なので、ルールを無効化
+// eslint-disable-next-line
 export async function requestI2CAccess(): Promise<I2CAccess> {
-  return new Promise(res => {
-    const ports = new I2CPortMap(
-      [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
-        portNumber,
-        new I2CPort(portNumber),
-      ])
-    );  
-    res(new I2CAccess(ports));
-  });
+  const ports = new I2CPortMap(
+    [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
+      portNumber,
+      new I2CPort(portNumber),
+    ])
+  );
+
+  return new I2CAccess(ports);
 }

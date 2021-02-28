@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "npx eslint index.ts",
+    "lint": "eslint index.ts",
     "prepare": "npm run build"
   },
   "keywords": [
