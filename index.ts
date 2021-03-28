@@ -22,14 +22,14 @@ export class I2CAccess {
     this._ports = ports == null ? new I2CPortMap() : ports;
   }
 
-  get ports() {
+  get ports(): I2CPortMap {
     return this._ports;
   }
 }
 
 /** Different from Web I2C API specification. */
 export class I2CPortMap extends Map<PortNumber, I2CPort> {
-  getByName(portName: PortName) {
+  getByName(portName: PortName): I2CPort | undefined {
     const matches = /^i2c-(\d+)$/.exec(portName);
     return matches == null ? undefined : this.get(parseUint16(matches[1]));
   }
@@ -42,11 +42,11 @@ export class I2CPort {
     this._portNumber = parseUint16(portNumber.toString());
   }
 
-  get portNumber() {
+  get portNumber(): PortNumber {
     return this._portNumber;
   }
 
-  get portName() {
+  get portName(): string {
     return `i2c-${this.portNumber}`;
   }
 
@@ -155,6 +155,8 @@ export class OperationError extends Error {
   }
 }
 
+// Web I2Cの仕様に基づく意図的なasync関数の使用なので、ルールを無効化
+// eslint-disable-next-line
 export async function requestI2CAccess(): Promise<I2CAccess> {
   const ports = new I2CPortMap(
     [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
