@@ -33,12 +33,6 @@
     "prepare": "husky install && rm -rf dist && npm run build",
     "precommit": "lint-staged"
   },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write --single-quote",
-      "git add"
-    ]
-  },
   "keywords": [
     "hardware",
     "i2c",
