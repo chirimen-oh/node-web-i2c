@@ -69,7 +69,7 @@ export class I2CPort {
         try {
           await bus.writeByte(slaveAddress, cmd, byte);
           return byte;
-        } catch (error) {
+        } catch (error: any) {
           throw new OperationError(error);
         }
       },
@@ -77,7 +77,7 @@ export class I2CPort {
         try {
           await bus.writeWord(slaveAddress, cmd, word);
           return word;
-        } catch (error) {
+        } catch (error: any) {
           throw new OperationError(error);
         }
       },
@@ -87,7 +87,7 @@ export class I2CPort {
         try {
           const byte = await bus.receiveByte(slaveAddress);
           return byte;
-        } catch (error) {
+        } catch (error: any) {
           throw new OperationError(error);
         }
       },
@@ -100,7 +100,7 @@ export class I2CPort {
             Buffer.allocUnsafe(length)
           );
           return new Uint8Array(buffer.slice(0, bytesRead));
-        } catch (error) {
+        } catch (error: any) {
           throw new OperationError(error);
         }
       },
@@ -109,7 +109,7 @@ export class I2CPort {
         try {
           await bus.sendByte(slaveAddress, byte);
           return byte;
-        } catch (error) {
+        } catch (error: any) {
           throw new OperationError(error);
         }
       },
@@ -122,7 +122,7 @@ export class I2CPort {
             Buffer.from(bytes)
           );
           return new Uint8Array(buffer.slice(0, bytesWritten));
-        } catch (error) {
+        } catch (error: any) {
           throw new OperationError(error);
         }
       },
