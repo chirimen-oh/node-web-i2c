@@ -94,7 +94,7 @@ export class I2CPort {
   /**
    * I2CSlave 接続デバイスオープン処理
    * @param slaveAddress 接続デバイス情報のアドレス
-   * @return I2CSlave 接続デバイス情報の Promise
+   * @return I2CSlaveDevice インスタンスの生成の完了
    */
   async open(slaveAddress: I2CSlaveAddress): Promise<I2CSlaveDevice> {
     const bus = await openPromisified(this.portNumber).catch((error) => {
@@ -105,7 +105,7 @@ export class I2CPort {
       slaveAddress,
       /**
        * @function
-       * I2c 8bit 読み取り処理
+       * I2c s/I2c/I2C 読み取り処理
        * @param registerNumber 読み取りアドレス
        */
       read8: (registerNumber) =>
@@ -114,7 +114,7 @@ export class I2CPort {
         }),
       /**
        * @function
-       * I2c 16bit 読み取り処理
+       * I2c s/I2c/I2C 読み取り処理
        * @param registerNumber 読み取りアドレス
        */
       read16: (registerNumber) =>
@@ -123,7 +123,7 @@ export class I2CPort {
         }),
       /**
        * @function
-       * I2c 8bit 書き込み処理
+       * I2c s/I2c/I2C 書き込み処理
        * @param registerNumber 書き込みアドレス
        * @param byte 書き込みの値（バイト）
        */
@@ -137,7 +137,7 @@ export class I2CPort {
       },
       /**
        * @function
-       * I2c 16bit 書き込み処理
+       * I2c s/byte/bytes 書き込み処理
        * @param registerNumber 書き込みアドレス
        * @param word 書き込みの値（ワード）
        */
@@ -151,7 +151,7 @@ export class I2CPort {
       },
       /**
        * @function
-       * I2c 16bit 読み取りバイト処理
+       * I2c s/byte/bytes 読み取りバイト処理
        * Different from Web I2C API specification.
        */
       readByte: async () => {
@@ -164,9 +164,9 @@ export class I2CPort {
       },
       /**
        * @function
-       * I2c 16bit 読み取りバイト処理
+       * I2c s/byte/bytes 読み取りバイト処理
        * Different from Web I2C API specification.
-       * @param length バイト長
+       * @param length 読み取る配列の長さ
        */
       readBytes: async (length) => {
         try {
@@ -182,7 +182,7 @@ export class I2CPort {
       },
       /**
        * @function
-       * I2c 16bit 書き込みバイト処理
+       * I2c s/byte/bytes 書き込みバイト処理
        * Different from Web I2C API specification.
        * @param registerNumber 読み取りアドレス
        */
@@ -196,9 +196,9 @@ export class I2CPort {
       },
       /**
        * @function
-       * I2c 16bit 書き込みバイト配列処理
+       * I2c s/byte/bytes 書き込み処理
        * Different from Web I2C API specification.
-       * @param byte バイトサイズ配列
+       * @param 書き込みの値の配列
        */
       writeBytes: async (bytes) => {
         try {
@@ -217,7 +217,7 @@ export class I2CPort {
 }
 
 /**
- * I2CSlaveDevice クラス定義
+ * I2CSlaveDevice クラス
  */
 export interface I2CSlaveDevice {
   /** I2C Slave アドレス */
@@ -225,26 +225,26 @@ export interface I2CSlaveDevice {
 
   /**
    * @function
-   * I2c 8bit 読み取り処理
+   * I2c s/I2c/I2C 読み取り処理
    * @param registerNumber 読み取りアドレス
    */
   read8(registerNumber: number): Promise<number>;
   /**
    * @function
-   * I2c 16bit 読み取り処理
+   * I2c s/I2c/I2C 読み取り処理
    * @param registerNumber 読み取りアドレス
    */
   read16(registerNumber: number): Promise<number>;
   /**
    * @function
-   * I2c 8bit 書き込み処理
+   * I2c s/I2c/I2C 書き込み処理
    * @param registerNumber 書き込みアドレス
    * @param byte 書き込みの値（バイト）
    */
   write8(registerNumber: number, value: number): Promise<number>;
   /**
    * @function
-   * I2c 16bit 書き込み処理
+   * I2c s/byte/bytes 書き込み処理
    * @param registerNumber 書き込みアドレス
    * @param word 書き込みの値（ワード）
    */
@@ -252,35 +252,35 @@ export interface I2CSlaveDevice {
 
   /**
    * @function
-   * I2c 16bit 読み取りバイト処理
+   * I2c s/byte/bytes 読み取りバイト処理
    * Different from Web I2C API specification.
    */
   readByte(): Promise<number>;
   /**
    * @function
-   * I2c 16bit 読み取りバイト処理
+   * I2c s/byte/bytes 読み取りバイト処理
    * Different from Web I2C API specification.
-   * @param length バイト長
+   * @param length 読み取る配列の長さ
    */
   readBytes(length: number): Promise<Uint8Array>;
   /**
    * @function
-   * I2c 16bit 書き込みバイト処理
+   * I2c s/byte/bytes 書き込みバイト処理
    * Different from Web I2C API specification.
-   * @param byte バイトサイズ
+   * @param byte 書き込みの値
    */
   writeByte(byte: number): Promise<number>;
   /**
    * @function
-   * I2c 16bit 書き込みバイト配列処理
+   * I2c s/byte/bytes 書き込みバイト配列処理
    * Different from Web I2C API specification.
-   * @param byte バイトサイズ配列
+   * @param byte 書き込みの値
    */
   writeBytes(bytes: Array<number>): Promise<Uint8Array>;
 }
 
 /**
- * 操作エラークラス定義
+ * 操作エラー
  */
 export class OperationError extends Error {
   /**
@@ -293,11 +293,7 @@ export class OperationError extends Error {
   }
 }
 
-/**
- * requestGPIOAccess 関数
- * Web I2Cの仕様に基づく意図的なasync関数の使用なので、ルールを無効化
- * @return I2CAccess インスタンス生成結果 Promise
- */
+// Web I2Cの仕様に基づく意図的なasync関数の使用なので、ルールを無効化
 // eslint-disable-next-line
 export async function requestI2CAccess(): Promise<I2CAccess> {
   const ports = new I2CPortMap(
