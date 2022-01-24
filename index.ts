@@ -31,7 +31,7 @@ type PortName = string;
 type I2CSlaveAddress = number;
 
 /**
- * I2CAccess クラス定義
+ * I2CAccess クラス
  */
 export class I2CAccess {
   private readonly _ports: I2CPortMap;
@@ -62,7 +62,7 @@ export class I2CPortMap extends Map<PortNumber, I2CPort> {
 }
 
 /**
- * I2CPort クラス定義
+ * I2CPort クラス
  */
 export class I2CPort {
   private readonly _portNumber: PortNumber;
