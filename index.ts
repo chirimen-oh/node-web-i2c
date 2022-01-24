@@ -198,7 +198,7 @@ export class I2CPort {
        * @function
        * I2c bytes 書き込み処理
        * Different from Web I2C API specification.
-       * @param 書き込みの値の配列
+       * @param bytes 書き込みの値の配列
        */
       writeBytes: async (bytes) => {
         try {
@@ -267,14 +267,14 @@ export interface I2CSlaveDevice {
    * @function
    * I2c bytes 書き込みバイト処理
    * Different from Web I2C API specification.
-   * @param byte 書き込みの値
+   *  @param byte 書き込みの値
    */
   writeByte(byte: number): Promise<number>;
   /**
    * @function
    * I2c bytes 書き込みバイト配列処理
    * Different from Web I2C API specification.
-   * @param bytes 書き込みの値
+   * @param bytes 書き込みの値の配列
    */
   writeBytes(bytes: Array<number>): Promise<Uint8Array>;
 }
