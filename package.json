@@ -1,6 +1,6 @@
 {
   "name": "node-web-i2c",
-  "version": "1.1.18",
+  "version": "1.1.19",
   "description": "I2C access with Node.js",
   "main": "index.js",
   "files": [
