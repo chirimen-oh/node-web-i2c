@@ -24,4 +24,8 @@ main();
 
 ## Document
 
-[Web I2C API](http://browserobo.github.io/WebI2C)
+- [TSDoc](http://chirimen.org/node-web-i2c/)
+
+## Reference
+
+- [Web I2C API for W3C Draft](http://browserobo.github.io/WebI2C)
