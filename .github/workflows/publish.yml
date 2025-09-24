@@ -10,9 +10,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-          cache: yarn
+          cache: npm
           registry-url: https://registry.npmjs.org/
-      - run: yarn
+      - run: npm ci
       - name: Git configuration.
         run: |
           git config --global user.email bot@example

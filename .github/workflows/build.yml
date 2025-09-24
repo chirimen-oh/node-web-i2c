@@ -2,15 +2,22 @@ name: build
 on: push
 jobs:
   main:
+    strategy:
+      matrix:
+        node:
+          - 20
+          - 22
+          - "lts/*"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
-          cache: yarn
-      - run: yarn
-      - run: yarn build
+          node-version: "${{ matrix.node }}"
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run build
       - name: The working tree is clean.
         run: "[[ -z $(git status --porcelain) ]]"
       - name: Show the working tree status.
