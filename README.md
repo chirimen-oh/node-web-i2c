@@ -4,27 +4,24 @@ I2C access with Node.js
 
 ## Usage
 
+```
+$ npm i node-web-i2c
+```
+
 ```js
-const { requestI2CAccess } = require("node-web-i2c");
-const ADT7410 = require("@chirimen/adt7410");
+import { requestI2CAccess } from "node-web-i2c";
+import ADT7410 from "@chirimen/adt7410";
 
-const ADT7410_ADDR = 0x48;
-
-async function main() {
-  const i2cAccess = await requestI2CAccess();
-  const port = i2cAccess.ports.get(1);
-  const adt7410 = new ADT7410(port, ADT7410_ADDR);
-  await adt7410.init();
-  const temperature = await adt7410.read();
-  console.log(`Temperature: ${temperature} ℃`);
-}
-
-main();
+const i2cAccess = await requestI2CAccess();
+const adt7410 = new ADT7410(i2cAccess.ports.get(1), 0x48);
+await adt7410.init();
+const temperature = await adt7410.read();
+console.log(`Temperature: ${temperature} ℃`);
 ```
 
 ## Document
 
-- [TSDoc](http://chirimen.org/node-web-i2c/)
+- [TSDoc](http://www.chirimen.org/node-web-i2c/)
 
 ## Reference
 
