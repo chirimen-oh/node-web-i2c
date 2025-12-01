@@ -173,7 +173,7 @@ export class I2CPort {
           const { bytesRead, buffer } = await bus.i2cRead(
             slaveAddress,
             length,
-            Buffer.allocUnsafe(length)
+            Buffer.allocUnsafe(length),
           );
           return new Uint8Array(buffer.slice(0, bytesRead));
         } catch (error: any) {
@@ -205,7 +205,7 @@ export class I2CPort {
           const { bytesWritten, buffer } = await bus.i2cWrite(
             slaveAddress,
             bytes.length,
-            Buffer.from(bytes)
+            Buffer.from(bytes),
           );
           return new Uint8Array(buffer.slice(0, bytesWritten));
         } catch (error: any) {
@@ -300,7 +300,7 @@ export async function requestI2CAccess(): Promise<I2CAccess> {
     [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
       portNumber,
       new I2CPort(portNumber),
-    ])
+    ]),
   );
 
   return new I2CAccess(ports);

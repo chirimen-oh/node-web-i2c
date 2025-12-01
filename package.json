@@ -13,24 +13,21 @@
   "author": "Kohei Watanabe <kou029w@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/i2c-bus": "^5.1.0",
-    "@types/node": "^22.0.0",
-    "i2c-bus": "^5.2.2"
+    "@types/i2c-bus": "^5.1.2",
+    "@types/node": "^24.10.1",
+    "i2c-bus": "^5.2.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
     "@types/node": "22.18.13",
-    "@typescript-eslint/eslint-plugin": "6.21.0",
-    "@typescript-eslint/parser": "6.21.0",
-    "eslint": "8.57.1",
-    "husky": "8.0.3",
-    "lint-staged": "15.5.2",
-    "prettier": "3.6.2",
-    "typedoc": "0.25.13",
-    "typescript": "5.4.5"
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
+    "typedoc": "0.28.15",
+    "typescript": "5.9.3"
   },
   "scripts": {
     "build": "tsc",
-    "lint": "eslint index.ts",
+    "lint": "biome check --write --no-errors-on-unmatched",
     "prepare": "husky install && rm -rf dist && npm run build",
     "precommit": "lint-staged",
     "preversion": "npm run docs && git add docs",
