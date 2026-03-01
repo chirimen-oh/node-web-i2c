@@ -22,7 +22,7 @@
     "@types/node": "22.18.13",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
-    "typedoc": "0.28.16",
+    "typedoc": "0.28.17",
     "typedoc-rhineai-theme": "1.2.0",
     "typescript": "5.9.3"
   },
