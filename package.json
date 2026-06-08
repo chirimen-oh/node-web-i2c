@@ -20,15 +20,15 @@
   },
   "devDependencies": {
     "@tsconfig/strictest": "2.0.8",
-    "@types/node": "22.19.13",
+    "@types/node": "24.13.0",
     "husky": "9.1.7",
-    "lint-staged": "16.2.7",
+    "lint-staged": "17.0.7",
     "oxfmt": "0.53.0",
     "oxlint": "1.68.0",
     "oxlint-tsgolint": "0.23.0",
-    "typedoc": "0.28.15",
+    "typedoc": "0.28.19",
     "typedoc-rhineai-theme": "1.2.0",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "scripts": {
     "build": "tsc",
