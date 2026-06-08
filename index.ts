@@ -57,7 +57,9 @@ export class I2CAccess {
 export class I2CPortMap extends Map<PortNumber, I2CPort> {
   getByName(portName: PortName): I2CPort | undefined {
     const matches = /^i2c-(\d+)$/.exec(portName);
-    return matches == null ? undefined : this.get(parseUint16(matches[1]));
+    return matches == null || matches[1] == null
+      ? undefined
+      : this.get(parseUint16(matches[1]));
   }
 }
 
