@@ -1,4 +1,4 @@
-import { openPromisified } from 'i2c-bus';
+import { openPromisified } from "i2c-bus";
 
 /**
  * I2C Port Map Max サイズ
@@ -57,9 +57,7 @@ export class I2CAccess {
 export class I2CPortMap extends Map<PortNumber, I2CPort> {
   getByName(portName: PortName): I2CPort | undefined {
     const matches = /^i2c-(\d+)$/.exec(portName);
-    return matches == null || matches[1] == null
-      ? undefined
-      : this.get(parseUint16(matches[1]));
+    return matches == null || matches[1] == null ? undefined : this.get(parseUint16(matches[1]));
   }
 }
 
@@ -299,10 +297,7 @@ export class OperationError extends Error {
 // eslint-disable-next-line
 export async function requestI2CAccess(): Promise<I2CAccess> {
   const ports = new I2CPortMap(
-    [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [
-      portNumber,
-      new I2CPort(portNumber),
-    ]),
+    [...Array(I2CPortMapSizeMax).keys()].map((portNumber) => [portNumber, new I2CPort(portNumber)]),
   );
 
   return new I2CAccess(ports);
