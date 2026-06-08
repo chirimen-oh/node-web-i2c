@@ -2,44 +2,6 @@
   "name": "node-web-i2c",
   "version": "1.1.73",
   "description": "I2C access with Node.js",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "files": [
-    "index.*"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chirimen-oh/node-web-i2c.git"
-  },
-  "author": "Kohei Watanabe <kou029w@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "@types/i2c-bus": "^5.1.2",
-    "@types/node": "^24.10.1",
-    "i2c-bus": "^5.2.3"
-  },
-  "devDependencies": {
-    "@tsconfig/strictest": "2.0.8",
-    "@types/node": "24.13.0",
-    "husky": "9.1.7",
-    "lint-staged": "17.0.7",
-    "oxfmt": "0.53.0",
-    "oxlint": "1.68.0",
-    "oxlint-tsgolint": "0.23.0",
-    "typedoc": "0.28.19",
-    "typedoc-rhineai-theme": "1.2.0",
-    "typescript": "6.0.3"
-  },
-  "scripts": {
-    "build": "tsc",
-    "lint": "oxlint",
-    "prepare": "husky install && rm -rf dist && npm run build",
-    "precommit": "lint-staged",
-    "preversion": "npm run docs && git add docs",
-    "docs": "npm run remove:docs && npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./ README.md",
-    "typedoc": "typedoc",
-    "remove:docs": "rm -rf docs"
-  },
   "keywords": [
     "hardware",
     "i2c",
@@ -54,5 +16,41 @@
     "robots",
     "rpi",
     "smbus"
-  ]
+  ],
+  "license": "MIT",
+  "author": "Kohei Watanabe <nebel@fogtype.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chirimen-oh/node-web-i2c.git"
+  },
+  "files": [
+    "index.*"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "oxlint",
+    "prepare": "husky && rm -rf dist && npm run build",
+    "precommit": "lint-staged",
+    "preversion": "npm run docs && git add docs",
+    "docs": "typedoc"
+  },
+  "dependencies": {
+    "@types/i2c-bus": "^5.1.2",
+    "@types/node": "^24.10.1",
+    "i2c-bus": "^5.2.3"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "2.0.8",
+    "@types/node": "25.9.2",
+    "husky": "9.1.7",
+    "lint-staged": "17.0.7",
+    "oxfmt": "0.53.0",
+    "oxlint": "1.68.0",
+    "oxlint-tsgolint": "0.23.0",
+    "typedoc": "0.28.19",
+    "typedoc-rhineai-theme": "1.2.0",
+    "typescript": "6.0.3"
+  }
 }
