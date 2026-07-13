@@ -1,6 +1,6 @@
 {
   "name": "node-web-i2c",
-  "version": "1.1.77",
+  "version": "1.1.78",
   "description": "I2C access with Node.js",
   "keywords": [
     "hardware",
