@@ -21,7 +21,7 @@ console.log(`Temperature: ${temperature} ℃`);
 
 ## Document
 
-- [TSDoc](http://www.chirimen.org/node-web-i2c/)
+- [TSDoc](https://npmx.dev/package-docs/node-web-i2c)
 
 ## Reference
 
